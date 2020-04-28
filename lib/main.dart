@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_financas/models/Transferencia.dart';
+import 'package:flutter_financas/models/transferencia.dart';
 
 void main() => runApp(BancoApp());
+
+final TextEditingController _controladorConta = TextEditingController();
+final TextEditingController _controladorValor = TextEditingController();
 
 class BancoApp extends StatelessWidget {
   @override
@@ -19,43 +22,45 @@ class FormularioTransferencia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Criando Transferencia"),),
-      body: Text("teste"),
-    );
-  }
-}
-
-class ListaTransferencia extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title:Text('Transferencias'),),
       body: Column(
         children: <Widget>[
-              ItemTransferencia(Transferencia(100.00, 2324)),
-              ItemTransferencia(Transferencia(231.00, 123123)),
-              ItemTransferencia(Transferencia(400.00, 23123)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: _controladorConta,
+              style: TextStyle(
+                fontSize: 24.0,
+              ),
+              decoration: InputDecoration(
+                labelText: "Número da Conta:",
+                hintText: "0000"
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: _controladorValor,
+              style: TextStyle(
+                fontSize: 24.0,
+              ),
+              decoration: InputDecoration(
+                icon: Icon(Icons.monetization_on),
+                labelText: "Valor:",
+                hintText: "00.00"
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          RaisedButton(
+            child: Text("Confirmar"),
+            onPressed: (){
+              debugPrint("Confirmar");
+            },
+          )
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-      ),
+      )
     );
   }
 }
 
-class ItemTransferencia extends StatelessWidget{
- final Transferencia _transferencia;
-
-  ItemTransferencia(this._transferencia);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Icon(Icons.monetization_on),
-        title: Text(_transferencia.valor.toString()),
-        subtitle: Text(_transferencia.conta.toString()),
-      ),
-    );
-  }
-}
