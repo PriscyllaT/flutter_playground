@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_financas/models/transferencia.dart';
 
 class FormularioTransferencia extends StatelessWidget {
   final TextEditingController _controladorConta = TextEditingController();
@@ -41,13 +41,21 @@ class FormularioTransferencia extends StatelessWidget {
             ),
             RaisedButton(
               child: Text("Confirmar"),
-              onPressed: (){
-                debugPrint("Confirmar");
-              },
+              onPressed: ()  => _criaTransferencia(),
             )
           ],
         )
     );
+  }
+
+  void _criaTransferencia() {
+      debugPrint("Confirmar");
+    final int numeroConta = int.tryParse(_controladorConta.text);
+    final double valor = double.tryParse(_controladorValor.text);
+    if(numeroConta !=null && valor !=null){
+      final transferenciaCriada = Transferencia(valor, numeroConta);
+      debugPrint('$transferenciaCriada');
+    }
   }
 }
 

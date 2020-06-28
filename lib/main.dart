@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_financas/screens/formulario.dart';
+import 'package:flutter_financas/screens/lista.dart';
 
 void main() => runApp(BancoApp());
 
@@ -11,7 +12,7 @@ class BancoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home:Scaffold(
-          body: FormularioTransferencia(),
+          body: ListaTransferencias(),
         )
     );
   }
